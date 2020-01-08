@@ -23,7 +23,9 @@
           return {
             timer: null,
             currentSecond: 0,
+            showSecond: '',
             currentMinute: 0,
+            showMinute: '',
             reset: false
           };
         },
@@ -41,16 +43,25 @@
           },
           addToCounter() {
             this.currentSecond++;
+            if (this.currentSecond < 10){
+              this.showSecond = '0' + this.currentSecond;
+            } else {
+              this.showSecond = this.currentSecond;
             if (this.currentSecond == 60) {
               this.currentMinute++;
               this.currentSecond = 0;
+              if (this.currentMinute < 10) {
+                this.showMinute = '0' + this.currentMinute;
+              } else {
+                this.showMinute = this.currentMinute;
+              }
             }
           }
         },
         template: `
             <div v-bind:class="[currentMinute > 24 ? 'yellow' : '']">
               <input/>
-              <p>{{ currentMinute < 10 ? '"0" + currentMinute' : currentMinute}} : {{currentSecond < 10 ? '"0" + currentSecond': currentSecond}} </p>
+              <p>{{ showMinute }} : {{ showSecond }} </p>
               <button @click="startTimer" id="start">Start</button>
               <button @click="stopTimer" id="stop">Stop</button>
               <button @click="resetTimer" id="stop">Reset</button>
