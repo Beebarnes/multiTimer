@@ -23,9 +23,9 @@
           return {
             timer: null,
             currentSecond: 0,
-            showSecond: '',
+            showSecond: '00',
             currentMinute: 0,
-            showMinute: '',
+            showMinute: '00',
             reset: false
           };
         },
@@ -40,6 +40,8 @@
           resetTimer() {
             this.currentMinute = 0;
             this.currentSecond = 0;
+            this.showSecond = '00';
+            this.showMinute = '00';
           },
           addToCounter() {
             this.currentSecond++;
@@ -50,6 +52,7 @@
             if (this.currentSecond == 60) {
               this.currentMinute++;
               this.currentSecond = 0;
+              this.showSecond = 0;
               if (this.currentMinute < 10) {
                 this.showMinute = '0' + this.currentMinute;
               } else {
