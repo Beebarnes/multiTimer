@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>MultiTimers</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div id="app">
+      <div class="card"><button-counter></button-counter></div>
+      <div class="card"><button-counter></button-counter></div>
+      <div class="card"><button-counter></button-counter></div>
+      <div class="card"><button-counter></button-counter></div>
+      <div class="card"><button-counter></button-counter></div>
+      <div class="card"><button-counter></button-counter></div>
+    </div>
+    <script>
+      Vue.component("button-counter", {
+        data: function() {
+          return {
+            timer: null,
+            currentSecond: 0,
+            currentMinute: 0,
+            reset: false
+          };
+        },
+        methods: {
+          startTimer() {
+            this.timer = setInterval(() => this.addToCounter(), 1000);
+          },
+          stopTimer() {
+            clearInterval(this.timer);
+            this.timer = null;
+          },
+          resetTimer() {
+            this.currentMinute = 0;
+            this.currentSecond = 0;
+          },
+          addToCounter() {
+            this.currentSecond++;
+            if (this.currentSecond == 60) {
+              this.currentMinute++;
+              this.currentSecond = 0;
+            }
+          }
+        },
+        template: `
+            <div>
+              <input/>
+              <p>{{ currentMinute}} : {{currentSecond}} </p>
+              <button @click="startTimer" id="start">Start</button>
+              <button @click="stopTimer" id="stop">Stop</button>
+              <button @click="resetTimer" id="stop">Reset</button>
+            </div>
+            `
+      });
+
+      new Vue({
+        el: "#app",
+        data: { title: "works" },
+        methods: {}
+      });
+    </script>
+  </body>
+</html>
