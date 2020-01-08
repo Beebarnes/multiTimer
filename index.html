@@ -50,7 +50,7 @@
         template: `
             <div v-bind:class="[currentMinute > 24 ? 'yellow' : '']">
               <input/>
-              <p>{{ currentMinute}} : {{currentSecond}} </p>
+              <p>{{ currentMinute < 10 ? '0' + currentMinute : currentMinute}} : {{currentSecond < 10 ? '0' + currentSecond: currentSecond}} </p>
               <button @click="startTimer" id="start">Start</button>
               <button @click="stopTimer" id="stop">Stop</button>
               <button @click="resetTimer" id="stop">Reset</button>
