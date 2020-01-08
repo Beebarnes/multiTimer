@@ -48,7 +48,7 @@
           }
         },
         template: `
-            <div :class="[currentMinute > 24 ? 'yellow' : '']">
+            <div v-bind:class="[currentMinute > 24 ? 'yellow' : '']">
               <input/>
               <p>{{ currentMinute}} : {{currentSecond}} </p>
               <button @click="startTimer" id="start">Start</button>
