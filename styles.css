@@ -12,3 +12,11 @@
   border-radius: 5px;
   box-shadow: 0 3px 5px black;
 }
+
+.yellow {
+  background-color: yellow;
+}
+
+.red {
+  background-color: red;
+}
